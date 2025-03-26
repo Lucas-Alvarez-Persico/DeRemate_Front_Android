@@ -52,5 +52,5 @@ public class MainActivity extends AppCompatActivity {
                 // Agregar intent para abrir la pantalla de registro
             }
         });
-    }
+    };
 };
