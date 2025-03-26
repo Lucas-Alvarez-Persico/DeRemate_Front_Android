@@ -5,81 +5,81 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:background="@color/background"
     android:padding="20dp"
-    android:background="@color/background">
+    tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- Campo de usuario -->
         <EditText
             android:id="@+id/et_usuario"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
             android:hint="Usuario"
             android:inputType="text"
             android:padding="12dp"
-            android:background="@android:drawable/editbox_background"
             android:textColor="@color/text"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Campo de contraseña -->
         <EditText
             android:id="@+id/et_contrasena"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
             android:hint="Contraseña"
             android:inputType="textPassword"
             android:padding="12dp"
-            android:background="@android:drawable/editbox_background"
             android:textColor="@color/text"
-            app:layout_constraintTop_toBottomOf="@id/et_usuario"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/et_usuario" />
 
         <!-- Botón de enviar -->
         <Button
             android:id="@+id/btn_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Iniciar Sesión"
             android:backgroundTint="@color/button"
+            android:text="Iniciar Sesión"
             android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@id/et_contrasena"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/et_contrasena" />
 
         <!-- Botón de 'Olvidé mi contraseña' -->
         <Button
             android:id="@+id/btn_olvidar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Olvidé mi contraseña"
             android:background="@null"
+            android:text="Olvidé mi contraseña"
             android:textColor="@color/secondary"
-            app:layout_constraintTop_toBottomOf="@id/btn_login"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
         <!-- Botón de 'Registro' -->
         <Button
             android:id="@+id/btn_registro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registrarse"
             android:background="@null"
+            android:text="Registrarse"
             android:textColor="@color/secondary"
-            app:layout_constraintTop_toBottomOf="@id/btn_olvidar"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/btn_olvidar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
