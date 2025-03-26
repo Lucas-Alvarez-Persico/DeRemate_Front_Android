@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 String contrasena = etContrasena.getText().toString();
 
                 if (!usuario.isEmpty() && !contrasena.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Iniciando sesión....", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Iniciando sesión.....", Toast.LENGTH_SHORT).show();
                     // Aquí puedes agregar lógica de autenticación con Firebase o API
                 } else {
                     Toast.makeText(MainActivity.this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
