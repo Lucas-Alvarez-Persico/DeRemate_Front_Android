@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(MainActivity.this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
                 }
-            }
+            };
         });
 
         btnOlvidar.setOnClickListener(new View.OnClickListener() {
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Redirigiendo a recuperación de contraseña...", Toast.LENGTH_SHORT).show();
                 // Agregar intent para abrir la pantalla de recuperación
-            }
+            };
         });
 
         btnRegistro.setOnClickListener(new View.OnClickListener() {
