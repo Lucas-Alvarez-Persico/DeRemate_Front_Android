@@ -1,32 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:padding="20dp"
+    android:background="@color/violeta1"
+    android:padding="0dp"
     tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Hola!"
+        android:textSize="60dp"
+        android:textColor="@color/blanco"
+        android:padding="40dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Bienvenido a Deremate"
+        android:textSize="30dp"
+        android:textColor="@color/blanco"
+        android:paddingTop="120dp"
+        android:paddingLeft="42dp"
+        android:textStyle="bold"/>
+
+    <View
+        android:id="@+id/rectangulo"
+        android:layout_width="0dp"
+        android:layout_height="450dp"
+        android:background="@drawable/rounded_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:alpha="0.85"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Login"
+        android:textSize="40dp"
+        android:textColor="@color/violeta1"
+        android:paddingTop="320dp"
+        android:paddingLeft="40dp"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:layout_width="221dp"
+        android:layout_height="357dp"
+        android:contentDescription="Box_Closed"
+        android:src="@drawable/box_closed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.863"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.28" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.834">
+
+        <Button
+            android:id="@+id/btn_login2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/violeta1"
+            android:text="Iniciar Sesión"
+            android:textColor="@color/blanco"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_contrasena" />
+
 
         <!-- Campo de usuario -->
         <EditText
             android:id="@+id/et_usuario"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background"
+            android:background="@drawable/rounded_edittext"
             android:hint="Usuario"
             android:inputType="text"
             android:padding="12dp"
-            android:textColor="@color/text"
+            android:textColor="@color/blanco"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,50 +109,21 @@
             android:id="@+id/et_contrasena"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/rounded_edittext"
             android:hint="Contraseña"
             android:inputType="textPassword"
             android:padding="12dp"
-            android:textColor="@color/text"
+            android:textColor="@color/blanco"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_usuario" />
 
         <!-- Botón de enviar -->
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/button"
-            android:text="Iniciar Sesión"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_contrasena" />
 
         <!-- Botón de 'Olvidé mi contraseña' -->
-        <Button
-            android:id="@+id/btn_olvidar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:text="Olvidé mi contraseña"
-            android:textColor="@color/secondary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
         <!-- Botón de 'Registro' -->
-        <Button
-            android:id="@+id/btn_registro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:text="Registrarse"
-            android:textColor="@color/secondary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_olvidar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
