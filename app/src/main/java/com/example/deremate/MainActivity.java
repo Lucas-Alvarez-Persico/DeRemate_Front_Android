@@ -18,10 +18,10 @@ public class MainActivity extends AppCompatActivity {
 
         EditText etUsuario = findViewById(R.id.et_usuario);
         EditText etContrasena = findViewById(R.id.et_contrasena);
-        Button btnLogin = findViewById(R.id.btn_login);
-        Button btnOlvidar = findViewById(R.id.btn_olvidar);
-        Button btnRegistro = findViewById(R.id.btn_registro);
-
+        //Button btnLogin = findViewById(R.id.btn_login);
+        //Button btnOlvidar = findViewById(R.id.btn_olvidar);
+        //Button btnRegistro = findViewById(R.id.btn_registro);
+        /*
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,5 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 // Agregar intent para abrir la pantalla de registro
             }
         });
+        */
     }
 };

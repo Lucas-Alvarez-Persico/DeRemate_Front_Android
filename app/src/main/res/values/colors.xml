@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#007BFF</color>       <!-- Azul vibrante -->
-    <color name="secondary">#FF8C00</color>     <!-- Naranja fuerte -->
-    <color name="background">#F5F5F5</color>    <!-- Gris claro -->
-    <color name="text">#212121</color>         <!-- Negro suave -->
-    <color name="button">#0056B3</color>        <!-- Azul más oscuro para botones -->
+    <color name="violeta1">#8736AA</color>       <!-- Violeta Claro -->
+    <color name="violeta2">#5D2689</color>       <!-- Violeta Medio -->
+    <color name="violeta3">#47297B</color>       <!-- Violeta Oscuro -->
+    <color name="amarillo1">#FFE863</color>      <!-- Amarillo Claro -->
+    <color name="amarillo2">#FFD93D</color>      <!-- Amarillo Claro -->
+    <color name="amarillo3">#F5BD1F</color>      <!-- Amarillo Claro -->
+    <color name="blanco">#FFFFFF</color>         <!-- Blanco -->
+
 
 </resources>
