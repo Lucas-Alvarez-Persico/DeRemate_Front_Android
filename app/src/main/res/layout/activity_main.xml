@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,85 +11,76 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/text_hola"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Hola!"
         android:textSize="60dp"
         android:textColor="@color/blanco"
-        android:padding="40dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:text="Bienvenido a Deremate"
-        android:textSize="30dp"
         android:textColor="@color/blanco"
-        android:paddingTop="120dp"
-        android:paddingLeft="42dp"
-        android:textStyle="bold"/>
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:paddingBottom="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_hola" />
 
     <View
         android:id="@+id/rectangulo"
         android:layout_width="0dp"
-        android:layout_height="450dp"
+        android:layout_height="0dp"
+        android:alpha="0.85"
         android:background="@drawable/rounded_view"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:alpha="0.85"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <ImageView
+        android:id="@+id/image_box"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Box_Closed"
+        android:layout_marginTop="-70dp"
+        android:src="@drawable/box_closed"
+        app:layout_constraintEnd_toEndOf="@id/rectangulo"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Login"
         android:textSize="40dp"
         android:textColor="@color/violeta1"
-        android:paddingTop="320dp"
-        android:paddingLeft="40dp"
-        android:textStyle="bold"/>
-
-    <ImageView
-        android:layout_width="221dp"
-        android:layout_height="357dp"
-        android:contentDescription="Box_Closed"
-        android:src="@drawable/box_closed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.863"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/rectangulo"
+        app:layout_constraintStart_toStartOf="@id/rectangulo"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.834">
+        app:layout_constraintTop_toBottomOf="@id/image_box">
 
-        <Button
-            android:id="@+id/btn_login2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:backgroundTint="@color/violeta1"
-            android:text="Iniciar Sesión"
-            android:textColor="@color/blanco"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_contrasena" />
-
-
-        <!-- Campo de usuario -->
         <EditText
             android:id="@+id/et_usuario"
             android:layout_width="0dp"
@@ -101,15 +91,13 @@
             android:padding="12dp"
             android:textColor="@color/blanco"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- Campo de contraseña -->
         <EditText
             android:id="@+id/et_contrasena"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/rounded_edittext"
             android:hint="Contraseña"
             android:inputType="textPassword"
@@ -119,11 +107,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_usuario" />
 
-        <!-- Botón de enviar -->
-
-        <!-- Botón de 'Olvidé mi contraseña' -->
-
-        <!-- Botón de 'Registro' -->
+        <Button
+            android:id="@+id/btn_login2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/violeta1"
+            android:text="Iniciar Sesión"
+            android:textColor="@color/blanco"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_contrasena" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
