@@ -17,7 +17,7 @@ public class NetworkModule {
     @Singleton
     public static Retrofit provideRetrofit() {
         return new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
+                .baseUrl("http://10.0.2.2:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

@@ -1,16 +1,13 @@
 package com.example.deremate.data.network;
-import com.example.deremate.data.model.Post;
 import com.example.deremate.data.model.User;
+import com.example.deremate.data.model.UserAuth;
 
-import java.util.List;
 import retrofit2.Call;
-import retrofit2.http.GET;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
+
 public interface ApiService {
-    @GET("user")
-    Call<User> getUser();
-
-    @GET("posts")
-    Call<List<Post>> getPosts();
-
+    @POST("user/login")
+    Call<UserAuth> login(@Body User user);
 
 }
