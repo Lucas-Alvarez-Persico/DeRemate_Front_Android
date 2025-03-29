@@ -10,9 +10,7 @@ public interface ApiService {
     @POST("user/login")
     Call<UserAuth> login(@Body User user);
 
-    @POST("register/mail")
-    Call<String> RegisterMail(@Body User user);
-
-
+    @POST("/user/register/mail")
+    Call<Void> registerMail(@Body User user);
 
 }

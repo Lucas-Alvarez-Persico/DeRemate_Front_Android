@@ -7,11 +7,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.deremate.data.model.User;
+import com.example.deremate.data.network.ApiService;
+import javax.inject.Inject;
+import dagger.hilt.android.AndroidEntryPoint;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import android.util.Log;
 
+@AndroidEntryPoint
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText etNombre, etEmail, etContrasena;
     private Button btnRegistrar;
+
+    @Inject
+    ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +45,45 @@ public class RegisterActivity extends AppCompatActivity {
             String nombre = etNombre.getText().toString();
             String email = etEmail.getText().toString();
             String contrasena = etContrasena.getText().toString();
+            String role = "ADMIN";
 
             if (!nombre.isEmpty() && !email.isEmpty() && !contrasena.isEmpty()) {
-                // Aquí puedes enviar la información al servidor o guardarla en la base de datos local
-                Toast.makeText(RegisterActivity.this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
+                User newUser = new User (email, contrasena);
+                newUser.setRole(role);
+                registerUser(newUser);
+                /*Toast.makeText(RegisterActivity.this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
 
                 // Regresar a la pantalla de login
                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                 startActivity(intent);
-                finish();
+                finish();*/
             } else {
                 Toast.makeText(RegisterActivity.this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void registerUser(User user) {
+        apiService.registerMail(user).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(RegisterActivity.this, "Revisa tu correo.", Toast.LENGTH_SHORT).show();
+
+                    // Devuelve resultado a MainActivity
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("REGISTER_SUCCESS", true);
+                    setResult(RESULT_OK, resultIntent);
+                    finish(); // Cierra RegisterActivity
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Error al registrar usuario", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(RegisterActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                Log.e("REGISTER_ERROR", t.getMessage());
             }
         });
     }
