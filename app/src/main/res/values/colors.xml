@@ -7,6 +7,8 @@
     <color name="amarillo2">#FFD93D</color>      <!-- Amarillo Claro -->
     <color name="amarillo3">#F5BD1F</color>      <!-- Amarillo Claro -->
     <color name="blanco">#FFFFFF</color>         <!-- Blanco -->
+    <color name="negro">#000000</color>         <!-- Negro -->
+
 
 
 </resources>

@@ -1,5 +1,6 @@
 package com.example.deremate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
         EditText etUsuario = findViewById(R.id.et_usuario);
         EditText etContrasena = findViewById(R.id.et_contrasena);
         Button btnLogin = findViewById(R.id.btn_login2);
+        Button btnRegistrarse = findViewById(R.id.btn_registrarse);
+
+
+        btnRegistrarse.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        });
 
         btnLogin.setOnClickListener(v -> {
             String usuario = etUsuario.getText().toString();

@@ -1,0 +1,64 @@
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos generados por compiladores o IDEs
+/build
+/.idea
+/.gradle
+
+# Archivos de configuración local
+local.properties
+.gradle/
+captures/
+.externalNativeBuild/
+
+# Archivos de cache e indexado
+.cxx/
+*.iml
+*.hprof
+*.log
+*.keystore
+*.orig
+
+# Carpetas generadas por Android Studio
+.idea/workspace.xml
+.idea/libraries
+.idea/modules.xml
+.idea/.name
+.idea/codeStyles/
+.idea/assetWizardSettings.xml
+.idea/caches/
+.idea/gradle.xml
+.idea/inspectionProfiles/
+.idea/compiler.xml
+.idea/dictionaries
+.idea/misc.xml
+.idea/vcs.xml
+.idea/navigation.xml
+
+# Archivos específicos de Android
+app/build/
+**/build/
+output.json
+
+# Archivos de configuración de emuladores
+*.hprof
+*.hpro
+
+# Archivos específicos de Hilt (si los usas)
+hilt/
+build/generated/source/kapt/
+
+# Archivos de backup o configuración temporal
+*.bak
+*.tmp
+*.swp
+*.swm
+
+# Archivos relacionados con Firebase o Google Services
+google-services.json
+firebase/
+
+# Archivos relacionados con NDK
+local.properties
