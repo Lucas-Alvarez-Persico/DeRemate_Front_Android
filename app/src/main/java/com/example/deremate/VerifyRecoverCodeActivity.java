@@ -21,13 +21,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 @AndroidEntryPoint
-public class VerifyCodeActivity extends AppCompatActivity {
+public class VerifyRecoverCodeActivity extends AppCompatActivity {
     @Inject
     ApiService apiService;
 
     private EditText etCodigo;
     private Button btnVerificar;
     private String username; // Variable para guardar el email recibido
+
+    private String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +46,7 @@ public class VerifyCodeActivity extends AppCompatActivity {
             if (!codigo.isEmpty()) {
                 verificarCodigo(codigo,username);
             } else {
-                Toast.makeText(VerifyCodeActivity.this, "Por favor ingresa el código", Toast.LENGTH_SHORT).show();
+                Toast.makeText(VerifyRecoverCodeActivity.this, "Por favor ingresa el código", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -54,30 +57,31 @@ public class VerifyCodeActivity extends AppCompatActivity {
         Log.d("codigo",request.getCode());
         Log.d("user",request.getUsername());
 
-        apiService.verifyCode(request).enqueue(new Callback<UserAuth>() {
+        apiService.recover(request).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<UserAuth> call, Response<UserAuth> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(VerifyCodeActivity.this, "Código verificado exitosamente", Toast.LENGTH_SHORT).show();
-                    UserAuth userAuth = response.body();
+                    Toast.makeText(VerifyRecoverCodeActivity.this, "Código verificado exitosamente", Toast.LENGTH_SHORT).show();
                     // Aquí puedes redirigir al usuario a la pantalla principal o a la de login
+                    token = response.body();
+                    Intent intent = new Intent(VerifyRecoverCodeActivity.this, NewPasswordActivity.class);
+                    intent.putExtra("username",username);
+                    intent.putExtra("token",token);
 
-                    //ACA HAY QUE AGREGAR QUE SI EL TOKEN ES DE RECUPERACION LO MANDE A ESA PANTALLA O SI YA ESTA AUTENTICADO AL MENU PRINCIPAL
-                    Intent intent = new Intent(VerifyCodeActivity.this, MainActivity.class);
-                    Log.d("Token", userAuth.getAccess_token());
                     startActivity(intent);
                     finish();
                 } else {
 
-                    Toast.makeText(VerifyCodeActivity.this, "Código incorrecto", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VerifyRecoverCodeActivity.this, "Código incorrecto", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<UserAuth> call, Throwable t) {
-                Toast.makeText(VerifyCodeActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(VerifyRecoverCodeActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
                 Log.e("VERIFICATION_ERROR", t.getMessage());
             }
         });
     }
 }
+

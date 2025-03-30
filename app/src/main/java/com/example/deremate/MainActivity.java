@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +39,12 @@ public class MainActivity extends AppCompatActivity {
         EditText etContrasena = findViewById(R.id.et_contrasena);
         Button btnLogin = findViewById(R.id.btn_login2);
         Button btnRegistrarse = findViewById(R.id.btn_registrarse);
+        TextView tvOlvidoContrasena = findViewById(R.id.tv_olvido_contrasena);
 
+        tvOlvidoContrasena.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, RecoverPasswordActivity.class);
+            startActivity(intent);
+        });
 
         btnRegistrarse.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
