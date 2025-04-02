@@ -26,6 +26,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".VerifyCodeActivity"/>
+        <activity android:name=".RecoverPasswordActivity"/>
+        <activity android:name=".VerifyRecoverCodeActivity"/>
+        <activity android:name=".NewPasswordActivity"/>
+
+
+
     </application>
 
 </manifest>
