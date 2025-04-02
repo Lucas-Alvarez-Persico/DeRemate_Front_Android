@@ -11,17 +11,31 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/text_hola"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hola!"
+        android:textSize="60dp"
+        android:textColor="@color/blanco"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp" />
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:paddingBottom="100dp"
+        android:layout_marginTop="8dp"
         android:text="Bienvenido a Deremate"
         android:textColor="@color/blanco"
         android:textSize="30dp"
         android:textStyle="bold"
+        android:paddingBottom="100dp"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="120dp" />
+        app:layout_constraintTop_toBottomOf="@id/text_hola" />
 
     <View
         android:id="@+id/rectangulo"

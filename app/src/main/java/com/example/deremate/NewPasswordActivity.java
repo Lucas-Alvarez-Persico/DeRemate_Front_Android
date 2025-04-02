@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.deremate.data.model.User;
 import com.example.deremate.data.network.ApiService;
+import com.example.deremate.data.repository.TokenRepository;
 
 import java.util.Optional;
 
@@ -27,6 +28,9 @@ public class NewPasswordActivity extends AppCompatActivity {
 
     private EditText etNewPassword, etConfirmPassword;
     private Button btnSaveNewPassword;
+
+    @Inject
+    TokenRepository tokenRepository;
 
     @Inject
     ApiService apiService;
@@ -47,7 +51,7 @@ public class NewPasswordActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             username = intent.getStringExtra("username");
-            token = intent.getStringExtra("token");
+            token = tokenRepository.getToken();
         }
 
         btnSaveNewPassword.setOnClickListener(v -> {
@@ -80,6 +84,7 @@ public class NewPasswordActivity extends AppCompatActivity {
             public void onResponse(Call<Optional<User>> call, Response<Optional<User>> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(NewPasswordActivity.this, "Contraseña actualizada correctamente", Toast.LENGTH_SHORT).show();
+                    tokenRepository.clearToken();
                     Intent intent = new Intent(NewPasswordActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();

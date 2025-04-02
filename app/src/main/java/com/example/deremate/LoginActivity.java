@@ -24,37 +24,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-@AndroidEntryPoint // Anotación necesaria para Hilt
-public class MainActivity extends AppCompatActivity {
+@AndroidEntryPoint
+public class LoginActivity extends AppCompatActivity {
 
     @Inject
     ApiService apiService; // Inyectar ApiService
 
     @Inject
     TokenRepository tokenRepository;
-    @Override
-    protected void onStart(){
-        super.onStart();
-        if (tokenRepository.getToken() == null){
-            Log.d("prueba2", "esto es otra prueba");
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        tokenRepository.clearToken();
-        Log.d("MainActivity", "Token eliminado al finalizar.");
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         EditText etUsuario = findViewById(R.id.et_usuario);
         EditText etContrasena = findViewById(R.id.et_contrasena);
@@ -63,12 +46,12 @@ public class MainActivity extends AppCompatActivity {
         TextView tvOlvidoContrasena = findViewById(R.id.tv_olvido_contrasena);
 
         tvOlvidoContrasena.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, RecoverPasswordActivity.class);
+            Intent intent = new Intent(LoginActivity.this, RecoverPasswordActivity.class);
             startActivity(intent);
         });
 
         btnRegistrarse.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
 
@@ -83,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 // Llamar al método de login
                 loginUser(user);
             } else {
-                Toast.makeText(MainActivity.this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -95,19 +78,22 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     // Login exitoso
                     UserAuth userAuth = response.body();
-                    Toast.makeText(MainActivity.this, "Bienvenido, " + userAuth.getAccess_token(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Bienvenido, " + userAuth.getAccess_token(), Toast.LENGTH_SHORT).show();
                     Log.d("LOGIN_SUCCESS", "Token: " + userAuth.getRole());
                     tokenRepository.saveToken(userAuth.getAccess_token());
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     // Error de login
-                    Toast.makeText(MainActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<UserAuth> call, Throwable t) {
                 // Error de red o API
-                Toast.makeText(MainActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
                 Log.e("LOGIN_ERROR", t.getMessage());
             }
         });
