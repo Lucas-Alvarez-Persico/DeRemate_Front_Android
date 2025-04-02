@@ -25,7 +25,7 @@ public class VerifyCodeActivity extends AppCompatActivity {
     @Inject
     ApiService apiService;
 
-    private EditText etCodigo;
+    private EditText etCode1, etCode2, etCode3, etCode4, etCode5, etCode6;
     private Button btnVerificar;
     private String username; // Variable para guardar el email recibido
     @Override
@@ -33,12 +33,23 @@ public class VerifyCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_code);
 
-        etCodigo = findViewById(R.id.et_codigo);
+        // Obtener las referencias a los EditText
+        etCode1 = findViewById(R.id.digit1);
+        etCode2 = findViewById(R.id.digit2);
+        etCode3 = findViewById(R.id.digit3);
+        etCode4 = findViewById(R.id.digit4);
+        etCode5 = findViewById(R.id.digit5);
+        etCode6 = findViewById(R.id.digit6);
         btnVerificar = findViewById(R.id.btn_verificar);
         username = getIntent().getStringExtra("username");
 
         btnVerificar.setOnClickListener(v -> {
-            String codigo = etCodigo.getText().toString();
+            String codigo = etCode1.getText().toString() +
+                    etCode2.getText().toString() +
+                    etCode3.getText().toString() +
+                    etCode4.getText().toString() +
+                    etCode5.getText().toString() +
+                    etCode6.getText().toString();
 
             if (!codigo.isEmpty()) {
                 verificarCodigo(codigo,username);

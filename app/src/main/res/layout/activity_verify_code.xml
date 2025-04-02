@@ -5,37 +5,114 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
+    <!-- Instrucción -->
+    <!-- Centramos el texto en vertical -->
+
+    <!-- Cajas para los números del código -->
+
     <TextView
         android:id="@+id/tv_instruccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="304dp"
         android:text="Ingresa el código que recibiste por correo"
         android:textSize="18sp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_codigo"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/code_container"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Código de verificación"
-        android:background="@drawable/rounded_edittext"
-        android:padding="12dp"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/tv_instruccion"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.5"> <!-- Centramos las cajas en vertical -->
 
+        <!-- EditText para cada dígito -->
+        <EditText
+            android:id="@+id/digit1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/digit2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/digit3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/digit4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/digit5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/digit6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <!-- Botón para verificar el código -->
     <Button
         android:id="@+id/btn_verificar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Verificar Código"
         android:backgroundTint="@color/violeta1"
+        android:text="Verificar Código"
         android:textColor="@color/blanco"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/et_codigo"
+        app:layout_constraintTop_toBottomOf="@id/code_container"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.7" /> <!-- Centramos el botón en vertical -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
