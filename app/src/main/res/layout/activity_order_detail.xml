@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detalle de la Orden"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:paddingBottom="24dp" />
+
+    <TextView
+        android:id="@+id/tv_order_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID:"
+        android:textSize="18sp"
+        android:textColor="#444"
+        android:paddingBottom="12dp" />
+
+    <TextView
+        android:id="@+id/tv_order_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dirección:"
+        android:textSize="18sp"
+        android:textColor="#444"
+        android:paddingBottom="12dp" />
+
+    <TextView
+        android:id="@+id/tv_order_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Estado:"
+        android:textSize="18sp"
+        android:textColor="#444"
+        android:paddingBottom="12dp" />
+
+    <Button
+        android:id="@+id/btn_volver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/violeta1"/>
+
+</LinearLayout>

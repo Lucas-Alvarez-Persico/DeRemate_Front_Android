@@ -71,7 +71,13 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.rv_orders);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        orderAdapter = new OrderAdapter(List.of()); // Lista vacía al inicio
+        orderAdapter = new OrderAdapter(List.of(), order -> {
+            Intent intent = new Intent(MainActivity.this, OrderDetailActivity.class);
+            intent.putExtra("order_id", order.getId());
+            intent.putExtra("order_address", order.getAddress());
+            intent.putExtra("order_state", order.getState());
+            startActivity(intent);
+        });
         recyclerView.setAdapter(orderAdapter);
 
         String token = tokenRepository.getToken();

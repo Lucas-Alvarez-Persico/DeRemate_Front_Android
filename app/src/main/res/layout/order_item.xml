@@ -7,28 +7,36 @@
     android:elevation="4dp">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/tv_order_id"
-            android:text="Order ID"
-            android:textStyle="bold"
-            android:textSize="16sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Orden #"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/tv_order_address"
-            android:text="Dirección"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Dirección: ..."
+            android:textSize="16sp"
+            android:textColor="#555555"
+            android:layout_marginTop="4dp"/>
 
         <TextView
             android:id="@+id/tv_order_state"
-            android:text="Estado"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Estado: ..."
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:layout_marginTop="4dp"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
