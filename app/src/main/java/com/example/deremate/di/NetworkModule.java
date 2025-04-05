@@ -31,7 +31,7 @@ public class NetworkModule {
     @Singleton
     public static Retrofit provideRetrofit(OkHttpClient client) {
         return new Retrofit.Builder()
-                .baseUrl("http://192.168.0.17:8080/")
+                .baseUrl("http://10.0.2.2:8080/")
                 .client(client)
                 .client(client) // Añadido para usar el OkHttpClient con timeout configurado
                 .addConverterFactory(ScalarsConverterFactory.create()) // Añadir esto primero

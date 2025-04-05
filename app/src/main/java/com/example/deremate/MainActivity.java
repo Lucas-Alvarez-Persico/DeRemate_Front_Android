@@ -1,6 +1,7 @@
 package com.example.deremate;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,13 +10,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 
+import com.example.deremate.adapter.OrderAdapter;
+import com.example.deremate.data.model.Order;
 import com.example.deremate.data.model.User;
 import com.example.deremate.data.model.UserAuth;
 import com.example.deremate.data.network.ApiService;
 import com.example.deremate.data.repository.TokenRepository;
+import com.example.deremate.data.repository.order.OrderRepository;
 import com.example.deremate.di.NetworkModule;
+import com.example.deremate.utils.RepositoryCallback;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -28,10 +38,13 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     @Inject
-    ApiService apiService; // Inyectar ApiService
-
+    OrderRepository orderRepository;
     @Inject
     TokenRepository tokenRepository;
+
+    private RecyclerView recyclerView;
+    private OrderAdapter orderAdapter;
+
     @Override
     protected void onStart(){
         super.onStart();
@@ -42,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
+    /*@Override
     protected void onStop() {
         super.onStop();
         tokenRepository.clearToken();
         Log.d("MainActivity", "Token eliminado al finalizar.");
-    }
+    }*/
 
 
     @Override
@@ -56,60 +69,32 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        EditText etUsuario = findViewById(R.id.et_usuario);
-        EditText etContrasena = findViewById(R.id.et_contrasena);
-        Button btnLogin = findViewById(R.id.btn_login2);
-        Button btnRegistrarse = findViewById(R.id.btn_registrarse);
-        TextView tvOlvidoContrasena = findViewById(R.id.tv_olvido_contrasena);
-
-        tvOlvidoContrasena.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, RecoverPasswordActivity.class);
+        recyclerView = findViewById(R.id.rv_orders);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        orderAdapter = new OrderAdapter(List.of(), order -> {
+            Intent intent = new Intent(MainActivity.this, OrderDetailActivity.class);
+            intent.putExtra("order_id", order.getId());
+            intent.putExtra("order_address", order.getAddress());
+            intent.putExtra("order_state", order.getState());
             startActivity(intent);
         });
+        recyclerView.setAdapter(orderAdapter);
 
-        btnRegistrarse.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-            startActivity(intent);
-        });
-
-        btnLogin.setOnClickListener(v -> {
-            String usuario = etUsuario.getText().toString();
-            String contrasena = etContrasena.getText().toString();
-
-            if (!usuario.isEmpty() && !contrasena.isEmpty()) {
-                // Crear objeto User con las credenciales
-                User user = new User(usuario, contrasena);
-
-                // Llamar al método de login
-                loginUser(user);
-            } else {
-                Toast.makeText(MainActivity.this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void loginUser(User user) {
-        apiService.login(user).enqueue(new Callback<UserAuth>() {
-            @Override
-            public void onResponse(Call<UserAuth> call, Response<UserAuth> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    // Login exitoso
-                    UserAuth userAuth = response.body();
-                    Toast.makeText(MainActivity.this, "Bienvenido, " + userAuth.getAccess_token(), Toast.LENGTH_SHORT).show();
-                    Log.d("LOGIN_SUCCESS", "Token: " + userAuth.getRole());
-                    tokenRepository.saveToken(userAuth.getAccess_token());
-                } else {
-                    // Error de login
-                    Toast.makeText(MainActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+        String token = tokenRepository.getToken();
+        if (token != null) {
+            orderRepository.getAllOrders(new RepositoryCallback<List<Order>>() {
+                @Override
+                public void onSuccess(List<Order> orders) {
+                    runOnUiThread(() -> orderAdapter.updateOrders(orders));
                 }
-            }
 
-            @Override
-            public void onFailure(Call<UserAuth> call, Throwable t) {
-                // Error de red o API
-                Toast.makeText(MainActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
-                Log.e("LOGIN_ERROR", t.getMessage());
-            }
-        });
+                @Override
+                public void onError(String errorMessage) {
+                    Toast.makeText(MainActivity.this, "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
+                }
+            }, token);
+        }
     }
+
+
 }
