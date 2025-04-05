@@ -6,131 +6,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/violeta1"
+    android:background="@color/blanco"
     android:padding="0dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:paddingBottom="100dp"
-        android:text="Bienvenido a Deremate"
-        android:textColor="@color/blanco"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="120dp" />
-
-    <View
-        android:id="@+id/rectangulo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:alpha="0.85"
-        android:background="@drawable/rounded_view"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.1" />
-
-    <ImageView
-        android:id="@+id/image_box"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_marginEnd="16dp"
-        android:contentDescription="Box_Closed"
-        android:layout_marginTop="-70dp"
-        android:src="@drawable/box_closed"
-        app:layout_constraintEnd_toEndOf="@id/rectangulo"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="40dp"
-        android:textColor="@color/violeta1"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@id/rectangulo"
-        app:layout_constraintStart_toStartOf="@id/rectangulo"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_box">
-
-        <EditText
-            android:id="@+id/et_usuario"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edittext"
-            android:hint="Usuario"
-            android:inputType="text"
-            android:padding="12dp"
-            android:textColor="@color/violeta3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/et_contrasena"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/rounded_edittext"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:padding="12dp"
-            android:textColor="@color/violeta3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_usuario" />
-
-        <TextView
-            android:id="@+id/tv_olvido_contrasena"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="¿Olvidaste tu contraseña?"
-            android:textColor="@color/violeta1"
-            android:textSize="16dp"
-            android:padding="8dp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_contrasena"/>
-
-        <Button
-            android:id="@+id/btn_login2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/violeta3"
-            android:text="Iniciar Sesión"
-            android:textColor="@color/blanco"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_olvido_contrasena" />
-
-        <Button
-            android:id="@+id/btn_registrarse"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/violeta1"
-            android:text="Registrarse"
-            android:textColor="@color/blanco"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_login2"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_orders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
