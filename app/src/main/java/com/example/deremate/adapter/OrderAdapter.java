@@ -63,7 +63,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         public void bind(Order order, OnItemClickListener listener) {
             tvOrderId.setText("ID: " + order.getId());
             tvAddress.setText("Dirección: " + order.getAddress());
-            tvState.setText("Estado: " + order.getState());
 
             itemView.setOnClickListener(v -> listener.onItemClick(order));
         }

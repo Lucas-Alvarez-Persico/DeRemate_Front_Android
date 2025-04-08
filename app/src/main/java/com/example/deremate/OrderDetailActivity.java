@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.deremate.R;
+import com.example.deremate.data.model.DeliveryStatus;
 
 public class OrderDetailActivity extends AppCompatActivity {
 
@@ -15,19 +16,20 @@ public class OrderDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
 
-        TextView tvOrderId = findViewById(R.id.tv_order_id);
+        TextView tvDeliveryId = findViewById(R.id.tv_delivery_id);
         TextView tvOrderAddress = findViewById(R.id.tv_order_address);
-        TextView tvOrderState = findViewById(R.id.tv_order_state);
+        TextView tvDeliveryState = findViewById(R.id.tv_delivery_state);
         Button btnVolver = findViewById(R.id.btn_volver);
 
         // Obtener datos del intent
-        long orderId = getIntent().getLongExtra("order_id", -1);
-        String orderAddress = getIntent().getStringExtra("order_address");
-        boolean orderState = getIntent().getBooleanExtra("order_state", false);
+        long orderId = getIntent().getLongExtra("delivery_id", -1);
+        String orderAddress = getIntent().getStringExtra("delivery_address");
+        String deliveryStatus = getIntent().getStringExtra("delivery_status");
 
-        tvOrderId.setText("ID: " + orderId);
+        tvDeliveryId.setText("ID: " + orderId);
         tvOrderAddress.setText("Dirección: " + orderAddress);
-        tvOrderState.setText("Estado: " + orderState);
+        tvDeliveryState.setText("Estado: " + deliveryStatus);
+
 
         btnVolver.setOnClickListener(v -> finish());
     }

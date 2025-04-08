@@ -1,28 +1,19 @@
 package com.example.deremate;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.util.Log;
 import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-
-import com.example.deremate.adapter.OrderAdapter;
-import com.example.deremate.data.model.Order;
-import com.example.deremate.data.model.User;
-import com.example.deremate.data.model.UserAuth;
-import com.example.deremate.data.network.ApiService;
+import com.example.deremate.adapter.DeliveryAdapter;
+import com.example.deremate.data.model.DeliveryDTO;
 import com.example.deremate.data.repository.TokenRepository;
-import com.example.deremate.data.repository.order.OrderRepository;
-import com.example.deremate.di.NetworkModule;
+import com.example.deremate.data.repository.delivery.DeliveryRepository;
 import com.example.deremate.utils.RepositoryCallback;
 
 import java.util.List;
@@ -30,38 +21,27 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-@AndroidEntryPoint // Anotación necesaria para Hilt
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     @Inject
-    OrderRepository orderRepository;
+    DeliveryRepository deliveryRepository;
     @Inject
     TokenRepository tokenRepository;
 
     private RecyclerView recyclerView;
-    private OrderAdapter orderAdapter;
+    private DeliveryAdapter deliveryAdapter;
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
-        if (tokenRepository.getToken() == null){
-            Log.d("prueba2", "esto es otra prueba");
+        if (tokenRepository.getToken() == null) {
+            Log.d("MainActivity", "No token found, redirecting to login.");
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
     }
-
-    /*@Override
-    protected void onStop() {
-        super.onStop();
-        tokenRepository.clearToken();
-        Log.d("MainActivity", "Token eliminado al finalizar.");
-    }*/
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,23 +49,24 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.rv_orders);
+        recyclerView = findViewById(R.id.rv_orders); // Podrías cambiar el ID a rv_deliveries si querés que refleje lo nuevo
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        orderAdapter = new OrderAdapter(List.of(), order -> {
+
+        deliveryAdapter = new DeliveryAdapter(List.of(), delivery -> {
             Intent intent = new Intent(MainActivity.this, OrderDetailActivity.class);
-            intent.putExtra("order_id", order.getId());
-            intent.putExtra("order_address", order.getAddress());
-            intent.putExtra("order_state", order.getState());
+            intent.putExtra("delivery_id", delivery.getId());
+            intent.putExtra("delivery_status", delivery.getStatus().name());
+            intent.putExtra("delivery_address", delivery.getOrder().getAddress());
             startActivity(intent);
         });
-        recyclerView.setAdapter(orderAdapter);
+        recyclerView.setAdapter(deliveryAdapter);
 
         String token = tokenRepository.getToken();
         if (token != null) {
-            orderRepository.getAllOrders(new RepositoryCallback<List<Order>>() {
+            deliveryRepository.getCurrentDeliveriesByStatus("pendiente", new RepositoryCallback<List<DeliveryDTO>>() {
                 @Override
-                public void onSuccess(List<Order> orders) {
-                    runOnUiThread(() -> orderAdapter.updateOrders(orders));
+                public void onSuccess(List<DeliveryDTO> deliveries) {
+                    runOnUiThread(() -> deliveryAdapter.updateDeliveries(deliveries));
                 }
 
                 @Override
@@ -95,6 +76,4 @@ public class MainActivity extends AppCompatActivity {
             }, token);
         }
     }
-
-
 }

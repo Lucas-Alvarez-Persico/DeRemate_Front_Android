@@ -1,5 +1,7 @@
 package com.example.deremate.di;
 
+import com.example.deremate.data.repository.delivery.DeliveryRepository;
+import com.example.deremate.data.repository.delivery.DeliveryRepositoryImpl;
 import com.example.deremate.data.repository.order.OrderRepository;
 import com.example.deremate.data.repository.order.OrderRepositoryImpl;
 
@@ -18,4 +20,7 @@ public abstract class RepositoryModule {
     @Singleton
     public abstract OrderRepository provideOrderRepository(OrderRepositoryImpl implementation);
 
+    @Binds
+    @Singleton
+    public abstract DeliveryRepository provideDeliveryRepository(DeliveryRepositoryImpl implementation);
 }
