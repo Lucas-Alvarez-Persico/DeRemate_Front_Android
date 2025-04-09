@@ -43,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*@Override
+    protected void onStop() {
+        super.onStop();
+        tokenRepository.clearToken();
+        Log.d("MainActivity", "Token eliminado al finalizar.");
+    }*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         deliveryAdapter = new DeliveryAdapter(List.of(), delivery -> {
-            Intent intent = new Intent(MainActivity.this, OrderDetailActivity.class);
+            Intent intent = new Intent(MainActivity.this, DeliveryDetailActivity.class);
             intent.putExtra("delivery_id", delivery.getId());
             intent.putExtra("delivery_status", delivery.getStatus().name());
             intent.putExtra("delivery_address", delivery.getOrder().getAddress());
@@ -75,5 +82,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }, token);
         }
+
+        findViewById(R.id.btn_ver_historial).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+            startActivity(intent);
+        });
+
     }
 }
+

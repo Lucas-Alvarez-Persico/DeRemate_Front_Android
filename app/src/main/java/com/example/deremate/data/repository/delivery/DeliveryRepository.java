@@ -8,4 +8,7 @@ import java.util.List;
 public interface DeliveryRepository {
 
     public void getCurrentDeliveriesByStatus(String status, RepositoryCallback<List<DeliveryDTO>> callback, String token);
+
+
+
 }

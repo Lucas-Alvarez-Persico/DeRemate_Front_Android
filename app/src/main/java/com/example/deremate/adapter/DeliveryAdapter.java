@@ -34,7 +34,7 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.Delive
     @NonNull
     @Override
     public DeliveryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.delivery_item, parent, false);
         return new DeliveryViewHolder(view);
     }
 
@@ -55,8 +55,8 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.Delive
         public DeliveryViewHolder(@NonNull View itemView) {
             super(itemView);
             tvAddress = itemView.findViewById(R.id.tv_order_address);
-            tvOrderId = itemView.findViewById(R.id.tv_order_id);
-            tvState = itemView.findViewById(R.id.tv_order_state);
+            tvOrderId = itemView.findViewById(R.id.tv_delivery_id);
+            tvState = itemView.findViewById(R.id.tv_delivery_state);
         }
 
         public void bind(DeliveryDTO deliveryDTO, DeliveryAdapter.OnDeliveryClickListener listener) {
