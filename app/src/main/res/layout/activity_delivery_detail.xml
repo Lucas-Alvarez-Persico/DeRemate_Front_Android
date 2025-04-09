@@ -18,7 +18,7 @@
         android:paddingBottom="24dp" />
 
     <TextView
-        android:id="@+id/tv_order_id"
+        android:id="@+id/tv_delivery_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ID:"
@@ -36,7 +36,7 @@
         android:paddingBottom="12dp" />
 
     <TextView
-        android:id="@+id/tv_order_state"
+        android:id="@+id/tv_delivery_state"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Estado:"

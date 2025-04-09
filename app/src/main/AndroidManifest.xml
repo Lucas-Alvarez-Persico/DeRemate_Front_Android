@@ -32,7 +32,8 @@
         <activity android:name=".VerifyRecoverCodeActivity"/>
         <activity android:name=".NewPasswordActivity"/>
         <activity android:name=".LoginActivity"/>
-        <activity android:name=".OrderDetailActivity"/>
+        <activity android:name=".DeliveryDetailActivity"/>
+        <activity android:name=".HistoryActivity" />
 
 
 

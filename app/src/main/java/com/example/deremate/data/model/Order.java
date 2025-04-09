@@ -10,7 +10,6 @@ public class Order {
 
     private String packageLocation;
 
-    private Boolean state;
 
     public Long getId() {
         return id;
@@ -42,13 +41,5 @@ public class Order {
 
     public void setPackageLocation(String packageLocation) {
         this.packageLocation = packageLocation;
-    }
-
-    public Boolean getState() {
-        return state;
-    }
-
-    public void setState(Boolean state) {
-        this.state = state;
     }
 }
