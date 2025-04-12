@@ -23,7 +23,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class HistoryActivity extends AppCompatActivity {
+public class HistoryActivity extends BaseActivity {
 
     @Inject
     DeliveryRepository deliveryRepository;
@@ -35,12 +35,17 @@ public class HistoryActivity extends AppCompatActivity {
     private DeliveryAdapter adapter;
 
     @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_history;
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
         rvHistory = findViewById(R.id.rv_history);
         rvHistory.setLayoutManager(new LinearLayoutManager(this));
+
         adapter = new DeliveryAdapter(List.of(), delivery -> {
             Intent intent = new Intent(HistoryActivity.this, DeliveryDetailActivity.class);
             intent.putExtra("delivery_id", delivery.getOrder().getId());
@@ -61,7 +66,6 @@ public class HistoryActivity extends AppCompatActivity {
                 public void onSuccess(List<DeliveryDTO> deliveries) {
                     runOnUiThread(() -> adapter.updateDeliveries(deliveries));
                 }
-
                 @Override
                 public void onError(String errorMessage) {
                     Log.e("ERROR", errorMessage);

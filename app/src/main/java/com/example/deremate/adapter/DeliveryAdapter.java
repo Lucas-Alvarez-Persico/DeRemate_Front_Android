@@ -60,7 +60,7 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.Delive
         }
 
         public void bind(DeliveryDTO deliveryDTO, DeliveryAdapter.OnDeliveryClickListener listener) {
-            tvOrderId.setText("ID: " + deliveryDTO.getOrder().getId());
+            tvOrderId.setText("Orden # " + deliveryDTO.getOrder().getId());
             tvAddress.setText("Dirección: " + deliveryDTO.getOrder().getAddress());
             tvState.setText("Estado: " + deliveryDTO.getStatus());
 

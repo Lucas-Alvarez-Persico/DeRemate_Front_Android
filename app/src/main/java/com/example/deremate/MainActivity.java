@@ -15,6 +15,7 @@ import com.example.deremate.data.model.DeliveryDTO;
 import com.example.deremate.data.repository.TokenRepository;
 import com.example.deremate.data.repository.delivery.DeliveryRepository;
 import com.example.deremate.utils.RepositoryCallback;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Inject
     DeliveryRepository deliveryRepository;
@@ -51,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -58,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.rv_orders); // Podrías cambiar el ID a rv_deliveries si querés que refleje lo nuevo
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         deliveryAdapter = new DeliveryAdapter(List.of(), delivery -> {
             Intent intent = new Intent(MainActivity.this, DeliveryDetailActivity.class);
