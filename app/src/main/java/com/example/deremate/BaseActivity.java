@@ -35,9 +35,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             if (id == R.id.nav_inventory) {
                 targetActivity = MainActivity.class;
             }
-            // else if (id == R.id.nav_in_progress) {
-            //     targetActivity = InProgressActivity.class;
-            // }
+             else if (id == R.id.nav_in_progress) {
+                 targetActivity = InProgressActivity.class;
+             }
             else if (id == R.id.nav_history) {
                 targetActivity = HistoryActivity.class;
             }
@@ -66,9 +66,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (this instanceof MainActivity) {
             nav.setSelectedItemId(R.id.nav_inventory);
         }
-        // else if (this instanceof InProgressActivity) {
-        //     nav.setSelectedItemId(R.id.nav_in_progress);
-        // }
+        else if (this instanceof InProgressActivity) {
+             nav.setSelectedItemId(R.id.nav_in_progress);
+         }
         else if (this instanceof HistoryActivity) {
             nav.setSelectedItemId(R.id.nav_history);
         }
