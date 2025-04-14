@@ -44,12 +44,12 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    /*@Override
-    protected void onStop() {
-        super.onStop();
-        tokenRepository.clearToken();
-        Log.d("MainActivity", "Token eliminado al finalizar.");
-    }*/
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        tokenRepository.clearToken();
+//        Log.d("MainActivity", "Token eliminado al finalizar.");
+//    }
 
     @Override
     protected int getContentLayoutId() {
@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+
 
         recyclerView = findViewById(R.id.rv_orders); // Podrías cambiar el ID a rv_deliveries si querés que refleje lo nuevo
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -68,9 +68,12 @@ public class MainActivity extends BaseActivity {
 
         deliveryAdapter = new DeliveryAdapter(List.of(), delivery -> {
             Intent intent = new Intent(MainActivity.this, DeliveryDetailActivity.class);
+            intent.putExtra("mode", "orden");
             intent.putExtra("delivery_id", delivery.getId());
             intent.putExtra("delivery_status", delivery.getStatus().name());
             intent.putExtra("delivery_address", delivery.getOrder().getAddress());
+            intent.putExtra("delivery_package", delivery.getOrder().getPackageLocation());
+            intent.putExtra("delivery_client", delivery.getOrder().getClient());
             startActivity(intent);
         });
         recyclerView.setAdapter(deliveryAdapter);
@@ -89,11 +92,6 @@ public class MainActivity extends BaseActivity {
                 }
             }, token);
         }
-
-        findViewById(R.id.btn_ver_historial).setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-            startActivity(intent);
-        });
 
     }
 }

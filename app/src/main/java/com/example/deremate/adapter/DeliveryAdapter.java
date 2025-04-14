@@ -61,8 +61,7 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.Delive
 
         public void bind(DeliveryDTO deliveryDTO, DeliveryAdapter.OnDeliveryClickListener listener) {
             tvOrderId.setText("Orden # " + deliveryDTO.getOrder().getId());
-            tvAddress.setText("Dirección: " + deliveryDTO.getOrder().getAddress());
-            tvState.setText("Estado: " + deliveryDTO.getStatus());
+            tvAddress.setText("Dirección: " + deliveryDTO.getOrder().getAddress());;
 
             itemView.setOnClickListener(v -> listener.onDeliveryClick(deliveryDTO));
         }

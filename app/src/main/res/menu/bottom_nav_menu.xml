@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_inventory"
-        android:icon="@drawable/profile"
+        android:icon="@drawable/boxes_stacked_solid"
         android:title="" />
     <item
         android:id="@+id/nav_in_progress"
@@ -10,7 +10,7 @@
         android:title="" />
     <item
         android:id="@+id/nav_history"
-        android:icon="@drawable/profile"
+        android:icon="@drawable/orders_history"
 
         android:title="" />
     <item

@@ -41,7 +41,6 @@ public class HistoryActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
 
         rvHistory = findViewById(R.id.rv_history);
         rvHistory.setLayoutManager(new LinearLayoutManager(this));
@@ -49,14 +48,15 @@ public class HistoryActivity extends BaseActivity {
         adapter = new DeliveryAdapter(List.of(), delivery -> {
             Intent intent = new Intent(HistoryActivity.this, DeliveryDetailActivity.class);
             intent.putExtra("delivery_id", delivery.getOrder().getId());
-            intent.putExtra("order_address", delivery.getOrder().getAddress());
-            intent.putExtra("delivery_state", delivery.getStatus());
+            intent.putExtra("delivery_address", delivery.getOrder().getAddress());
+            intent.putExtra("delivery_status", delivery.getStatus().name());
+            intent.putExtra("delivery_client", delivery.getOrder().getClient());
+            intent.putExtra("delivery_start_time", delivery.getStartTime());
+            intent.putExtra("delivery_end_time", delivery.getEndTime());
+            intent.putExtra("delivery_time_difference", delivery.getDeliveryTime());
             startActivity(intent);
         });
         rvHistory.setAdapter(adapter);
-
-        Button btnVolver = findViewById(R.id.btn_volver);
-        btnVolver.setOnClickListener(v -> finish());
 
         String token = tokenRepository.getToken();
         Log.e("HOLAAAA",token);

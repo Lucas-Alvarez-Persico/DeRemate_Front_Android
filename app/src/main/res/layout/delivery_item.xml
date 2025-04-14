@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_margin="8dp"
     android:layout_height="wrap_content"
+    android:layout_margin="2dp"
     android:padding="12dp"
-    android:elevation="4dp">
+    android:elevation="4dp"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,26 +21,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Orden #"
+            android:textColor="#000000"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000000" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_order_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dirección: ..."
-            android:textSize="16sp"
-            android:textColor="#555555"
-            android:layout_marginTop="4dp"/>
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_delivery_state"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Estado: ..."
-            android:textSize="16sp"
-            android:textStyle="italic"
-            android:layout_marginTop="4dp"/>
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
