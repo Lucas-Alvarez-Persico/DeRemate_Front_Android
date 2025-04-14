@@ -35,15 +35,15 @@ public abstract class BaseActivity extends AppCompatActivity {
             if (id == R.id.nav_inventory) {
                 targetActivity = MainActivity.class;
             }
-             else if (id == R.id.nav_in_progress) {
-                 targetActivity = InProgressActivity.class;
-             }
+            else if (id == R.id.nav_in_progress) {
+                targetActivity = InProgressActivity.class;
+            }
             else if (id == R.id.nav_history) {
                 targetActivity = HistoryActivity.class;
             }
-            // else if (id == R.id.nav_profile) {
-            //     targetActivity = ProfileActivity.class;
-            // }
+            else if (id == R.id.nav_profile) {
+                targetActivity = ProfileActivity.class;
+            }
 
             if (targetActivity != null && !this.getClass().equals(targetActivity)) {
                 Intent intent = new Intent(this, targetActivity);
@@ -72,9 +72,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         else if (this instanceof HistoryActivity) {
             nav.setSelectedItemId(R.id.nav_history);
         }
-        // else if (this instanceof ProfileActivity) {
-        //     nav.setSelectedItemId(R.id.nav_profile);
-        // }
+         else if (this instanceof ProfileActivity) {
+             nav.setSelectedItemId(R.id.nav_profile);
+         }
     }
 
 

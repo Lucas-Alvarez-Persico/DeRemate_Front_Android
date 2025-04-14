@@ -44,12 +44,12 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        tokenRepository.clearToken();
-//        Log.d("MainActivity", "Token eliminado al finalizar.");
-//    }
+    /*@Override
+    protected void onStop() {
+        super.onStop();
+        tokenRepository.clearToken();
+        Log.d("MainActivity", "Token eliminado al finalizar.");
+    }*/
 
     @Override
     protected int getContentLayoutId() {

@@ -32,6 +32,7 @@ public class HistoryActivity extends BaseActivity {
     TokenRepository tokenRepository;
 
     private RecyclerView rvHistory;
+
     private DeliveryAdapter adapter;
 
     @Override
@@ -59,7 +60,6 @@ public class HistoryActivity extends BaseActivity {
         rvHistory.setAdapter(adapter);
 
         String token = tokenRepository.getToken();
-        Log.e("HOLAAAA",token);
         if (token != null) {
             deliveryRepository.getCurrentDeliveriesByStatus("completado", new RepositoryCallback<List<DeliveryDTO>>() {
                 @Override

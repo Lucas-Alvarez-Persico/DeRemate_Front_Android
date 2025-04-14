@@ -57,7 +57,7 @@ public class DeliveryDetailActivity extends AppCompatActivity {
             String packageLocation = getIntent().getStringExtra("delivery_package");
             tvPackageLocation.setText("Ubicación del paquete: " + packageLocation);
             tvClient.setVisibility(View.VISIBLE);
-            tvPackageLocation.setVisibility(View.VISIBLE);
+                    tvPackageLocation.setVisibility(View.VISIBLE);
         } else {
             tvTitle.setText("Detalle de la Entrega");
 
