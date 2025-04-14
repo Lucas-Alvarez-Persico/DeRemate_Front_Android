@@ -11,6 +11,9 @@ import com.example.deremate.data.repository.TokenRepository;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class ProfileActivity extends BaseActivity {
 
     @Inject
@@ -38,8 +41,9 @@ public class ProfileActivity extends BaseActivity {
         tvCorreo.setText("AdrianMSerra@gmail.com");
 
         btnLogout.setOnClickListener(v -> {
-            tokenRepository.clearToken();  // 💥 Esto borra el token
 
+            tokenRepository.clearToken();  // 💥 Esto borra el token
+            Log.e("HOLAAAAAAA", "HOLAAAAAAA");
             // Verificamos en Logcat si el token se borró
             String token = tokenRepository.getToken();
             Log.d("TOKEN_LOGOUT", "Token después de logout: " + token); // Debería ser null
