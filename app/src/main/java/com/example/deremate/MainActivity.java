@@ -3,6 +3,8 @@ package com.example.deremate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -15,6 +17,7 @@ import com.example.deremate.data.model.DeliveryDTO;
 import com.example.deremate.data.repository.TokenRepository;
 import com.example.deremate.data.repository.delivery.DeliveryRepository;
 import com.example.deremate.utils.RepositoryCallback;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -23,7 +26,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Inject
     DeliveryRepository deliveryRepository;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private DeliveryAdapter deliveryAdapter;
+    private TextView textDefault;
 
     @Override
     protected void onStart() {
@@ -51,19 +55,29 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+
 
         recyclerView = findViewById(R.id.rv_orders); // Podrías cambiar el ID a rv_deliveries si querés que refleje lo nuevo
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        textDefault = findViewById(R.id.text_default);
+
 
         deliveryAdapter = new DeliveryAdapter(List.of(), delivery -> {
             Intent intent = new Intent(MainActivity.this, DeliveryDetailActivity.class);
+            intent.putExtra("mode", "orden");
             intent.putExtra("delivery_id", delivery.getId());
             intent.putExtra("delivery_status", delivery.getStatus().name());
             intent.putExtra("delivery_address", delivery.getOrder().getAddress());
+            intent.putExtra("delivery_package", delivery.getOrder().getPackageLocation());
+            intent.putExtra("delivery_client", delivery.getOrder().getClient());
             startActivity(intent);
         });
         recyclerView.setAdapter(deliveryAdapter);
@@ -73,7 +87,15 @@ public class MainActivity extends AppCompatActivity {
             deliveryRepository.getCurrentDeliveriesByStatus("pendiente", new RepositoryCallback<List<DeliveryDTO>>() {
                 @Override
                 public void onSuccess(List<DeliveryDTO> deliveries) {
-                    runOnUiThread(() -> deliveryAdapter.updateDeliveries(deliveries));
+                    runOnUiThread(() -> {
+                        if(!deliveries.isEmpty()){
+                            textDefault.setVisibility(View.GONE);
+                            deliveryAdapter.updateDeliveries(deliveries);
+                        }else{
+                            textDefault.setVisibility(View.VISIBLE);
+                        }
+                    });
+
                 }
 
                 @Override
@@ -82,11 +104,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }, token);
         }
-
-        findViewById(R.id.btn_ver_historial).setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-            startActivity(intent);
-        });
 
     }
 }

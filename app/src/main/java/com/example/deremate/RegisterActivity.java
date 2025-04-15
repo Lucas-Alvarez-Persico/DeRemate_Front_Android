@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,10 +40,11 @@ public class RegisterActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.et_email);
         etContrasena = findViewById(R.id.et_contrasena);
         btnRegistrar = findViewById(R.id.btn_registrar);
-        Button btnVolver= findViewById(R.id.btn_volver);
+        ImageButton btnVolver= findViewById(R.id.btn_volver);
         progressBar = findViewById(R.id.progressBar);
         tvProgress = findViewById(R.id.tv_progress);
-        darkOverlay = findViewById(R.id.dark_overlay);
+        darkOverlay = findViewById(R.id.rectangulo);
+
 
         btnVolver.setOnClickListener(v -> {
             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);

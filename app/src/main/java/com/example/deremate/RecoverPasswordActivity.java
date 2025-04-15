@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,9 +40,15 @@ public class RecoverPasswordActivity extends AppCompatActivity {
 
         etUsuario = findViewById(R.id.et_usuario);
         btnEnviar = findViewById(R.id.btn_enviar);
+        ImageButton btnVolver= findViewById(R.id.btn_volver);
         progressBar = findViewById(R.id.progressBar);
         tvProgress = findViewById(R.id.tv_progress);
         darkOverlay = findViewById(R.id.dark_overlay);
+
+        btnVolver.setOnClickListener(v -> {
+            Intent intent = new Intent(RecoverPasswordActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
 
         btnEnviar.setOnClickListener(v -> {
             String username = etUsuario.getText().toString().trim();

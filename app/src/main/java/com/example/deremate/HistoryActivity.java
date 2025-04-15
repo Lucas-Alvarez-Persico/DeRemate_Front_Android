@@ -3,7 +3,9 @@ package com.example.deremate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +25,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class HistoryActivity extends AppCompatActivity {
+public class HistoryActivity extends BaseActivity {
 
     @Inject
     DeliveryRepository deliveryRepository;
@@ -33,35 +35,50 @@ public class HistoryActivity extends AppCompatActivity {
 
     private RecyclerView rvHistory;
     private DeliveryAdapter adapter;
+    private TextView textDefault;
 
+
+    @Override
+    protected int getContentLayoutId() {
+        return R.layout.activity_history;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
 
         rvHistory = findViewById(R.id.rv_history);
         rvHistory.setLayoutManager(new LinearLayoutManager(this));
+        textDefault = findViewById(R.id.text_default);
+
+
         adapter = new DeliveryAdapter(List.of(), delivery -> {
             Intent intent = new Intent(HistoryActivity.this, DeliveryDetailActivity.class);
             intent.putExtra("delivery_id", delivery.getOrder().getId());
-            intent.putExtra("order_address", delivery.getOrder().getAddress());
-            intent.putExtra("delivery_state", delivery.getStatus());
+            intent.putExtra("delivery_address", delivery.getOrder().getAddress());
+            intent.putExtra("delivery_status", delivery.getStatus().name());
+            intent.putExtra("delivery_client", delivery.getOrder().getClient());
+            intent.putExtra("delivery_start_time", delivery.getStartTime());
+            intent.putExtra("delivery_end_time", delivery.getEndTime());
+            intent.putExtra("delivery_time_difference", delivery.getDeliveryTime());
             startActivity(intent);
         });
         rvHistory.setAdapter(adapter);
 
-        Button btnVolver = findViewById(R.id.btn_volver);
-        btnVolver.setOnClickListener(v -> finish());
-
         String token = tokenRepository.getToken();
-        Log.e("HOLAAAA",token);
         if (token != null) {
             deliveryRepository.getCurrentDeliveriesByStatus("completado", new RepositoryCallback<List<DeliveryDTO>>() {
                 @Override
                 public void onSuccess(List<DeliveryDTO> deliveries) {
-                    runOnUiThread(() -> adapter.updateDeliveries(deliveries));
-                }
+                    runOnUiThread(() -> {
+                        if(!deliveries.isEmpty()){
+                            textDefault.setVisibility(View.GONE);
+                            adapter.updateDeliveries(deliveries);
+                        }else{
+                            textDefault.setVisibility(View.VISIBLE);
+                        }
+                    });
 
+                }
                 @Override
                 public void onError(String errorMessage) {
                     Log.e("ERROR", errorMessage);

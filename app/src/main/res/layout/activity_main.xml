@@ -4,18 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFFFFF"
-    android:padding="0dp">
+    android:background="#FFFFFF">
 
-    <!-- Header violeta con esquinas redondeadas -->
+    <!-- Header violeta -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:background="@color/violeta1"
         android:orientation="vertical"
         android:gravity="center"
-        android:paddingTop="40dp"
-        android:backgroundTint="@color/violeta1">
+        android:paddingTop="40dp">
 
         <ImageView
             android:layout_width="48dp"
@@ -33,39 +31,55 @@
             android:layout_marginTop="8dp" />
     </LinearLayout>
 
-    <!-- Card con RecyclerView -->
-    <androidx.cardview.widget.CardView
+
+    <!-- CONTENIDO SCROLLEABLE (opcional con ScrollView si es necesario) -->
+    <LinearLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="6dp"
-        android:backgroundTint="@color/blanco">
+        android:orientation="vertical"
+        android:backgroundTint="@color/violeta1"
+        android:background="@drawable/rounded_background">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/text_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No hay ordenes disponibles actualmente"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="40dp"
+            android:textColor="#444"
+            android:visibility="gone"/>
+
+        <!-- Card con RecyclerView -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="12dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_margin="16dp"
+            app:cardMaxElevation="0dp"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp"
+            android:backgroundTint="@android:color/transparent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_orders"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="4dp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                android:orientation="vertical"
+                android:padding="12dp">
 
-    <!-- Botón Ver Historial -->
-    <Button
-        android:id="@+id/btn_ver_historial"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ver Historial"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/violeta1"
-        android:textColor="@android:color/white" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_orders"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
+
+    </LinearLayout>
 </LinearLayout>
