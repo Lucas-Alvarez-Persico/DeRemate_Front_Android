@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +30,7 @@ public class DeliveryDetailActivity extends AppCompatActivity {
         TextView tvStartTime = findViewById(R.id.tv_start_time);
         TextView tvEndTime = findViewById(R.id.tv_end_time);
         TextView tvTimeDifference = findViewById(R.id.tv_time_difference);
-        Button btnVolver = findViewById(R.id.btn_volver);
+        ImageButton back_button = findViewById(R.id.arrow_left_solid);
 
         // Obtener datos del intent
         String mode = getIntent().getStringExtra("mode"); // "orden" o "entrega"
@@ -102,6 +103,6 @@ public class DeliveryDetailActivity extends AppCompatActivity {
             }
         }
 
-        btnVolver.setOnClickListener(v -> finish());
+        back_button.setOnClickListener(v -> finish());
     }
 }

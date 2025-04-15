@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +21,7 @@ public class ProfileActivity extends BaseActivity {
     @Inject
     TokenRepository tokenRepository;
     private TextView tvNombre, tvApellido, tvCorreo;
-    private Button btnLogout;
+    private LinearLayout btnLogout;
 
     @Override
     protected int getContentLayoutId() {
@@ -42,7 +44,7 @@ public class ProfileActivity extends BaseActivity {
 
         btnLogout.setOnClickListener(v -> {
 
-            tokenRepository.clearToken();  // 💥 Esto borra el token
+            tokenRepository.clearToken();
             Log.e("HOLAAAAAAA", "HOLAAAAAAA");
             // Verificamos en Logcat si el token se borró
             String token = tokenRepository.getToken();

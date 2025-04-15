@@ -3,22 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F5F5">
+    android:backgroundTint="@color/violeta1"
+    android:background="@drawable/rounded_background">
 
     <!-- Header violeta -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#8B3DCC"
+        android:layout_height="180dp"
+        android:background="@color/violeta1"
+        android:backgroundTint="@color/violeta1"
         android:orientation="vertical"
         android:gravity="center"
-        android:paddingTop="50dp"
-        android:paddingBottom="20dp">
+        android:paddingTop="40dp">
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/profile" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/truck_fast_solid" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,8 +31,21 @@
             android:layout_marginTop="10dp" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/text_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No tiene ninguna orden asignada"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="40dp"
+        android:textColor="#444"
+        android:visibility="gone"/>
+
     <!-- Contenido principal -->
     <LinearLayout
+        android:id="@+id/layout_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -41,7 +55,9 @@
         android:elevation="4dp"
         android:backgroundTint="#FFFFFF"
         android:layout_gravity="center"
-        android:clipToPadding="false">
+        android:clipToPadding="false"
+        android:visibility="gone">
+
 
         <!-- ID y Ubicación -->
         <LinearLayout

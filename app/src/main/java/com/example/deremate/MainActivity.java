@@ -3,6 +3,8 @@ package com.example.deremate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -33,6 +35,7 @@ public class MainActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
     private DeliveryAdapter deliveryAdapter;
+    private TextView textDefault;
 
     @Override
     protected void onStart() {
@@ -64,6 +67,7 @@ public class MainActivity extends BaseActivity {
 
         recyclerView = findViewById(R.id.rv_orders); // Podrías cambiar el ID a rv_deliveries si querés que refleje lo nuevo
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        textDefault = findViewById(R.id.text_default);
 
 
         deliveryAdapter = new DeliveryAdapter(List.of(), delivery -> {
@@ -83,7 +87,15 @@ public class MainActivity extends BaseActivity {
             deliveryRepository.getCurrentDeliveriesByStatus("pendiente", new RepositoryCallback<List<DeliveryDTO>>() {
                 @Override
                 public void onSuccess(List<DeliveryDTO> deliveries) {
-                    runOnUiThread(() -> deliveryAdapter.updateDeliveries(deliveries));
+                    runOnUiThread(() -> {
+                        if(!deliveries.isEmpty()){
+                            textDefault.setVisibility(View.GONE);
+                            deliveryAdapter.updateDeliveries(deliveries);
+                        }else{
+                            textDefault.setVisibility(View.VISIBLE);
+                        }
+                    });
+
                 }
 
                 @Override

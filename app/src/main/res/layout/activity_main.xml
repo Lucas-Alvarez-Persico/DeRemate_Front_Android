@@ -30,6 +30,8 @@
             android:textStyle="bold"
             android:layout_marginTop="8dp" />
     </LinearLayout>
+
+
     <!-- CONTENIDO SCROLLEABLE (opcional con ScrollView si es necesario) -->
     <LinearLayout
         android:id="@+id/main_content"
@@ -39,6 +41,18 @@
         android:orientation="vertical"
         android:backgroundTint="@color/violeta1"
         android:background="@drawable/rounded_background">
+
+        <TextView
+            android:id="@+id/text_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No hay ordenes disponibles actualmente"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="40dp"
+            android:textColor="#444"
+            android:visibility="gone"/>
 
         <!-- Card con RecyclerView -->
         <androidx.cardview.widget.CardView
@@ -50,6 +64,7 @@
             app:cardCornerRadius="0dp"
             app:cardElevation="0dp"
             android:backgroundTint="@android:color/transparent">
+
 
             <LinearLayout
                 android:layout_width="match_parent"

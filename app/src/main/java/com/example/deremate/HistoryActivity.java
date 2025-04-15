@@ -3,7 +3,9 @@ package com.example.deremate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,8 +34,9 @@ public class HistoryActivity extends BaseActivity {
     TokenRepository tokenRepository;
 
     private RecyclerView rvHistory;
-
     private DeliveryAdapter adapter;
+    private TextView textDefault;
+
 
     @Override
     protected int getContentLayoutId() {
@@ -45,6 +48,8 @@ public class HistoryActivity extends BaseActivity {
 
         rvHistory = findViewById(R.id.rv_history);
         rvHistory.setLayoutManager(new LinearLayoutManager(this));
+        textDefault = findViewById(R.id.text_default);
+
 
         adapter = new DeliveryAdapter(List.of(), delivery -> {
             Intent intent = new Intent(HistoryActivity.this, DeliveryDetailActivity.class);
@@ -64,7 +69,15 @@ public class HistoryActivity extends BaseActivity {
             deliveryRepository.getCurrentDeliveriesByStatus("completado", new RepositoryCallback<List<DeliveryDTO>>() {
                 @Override
                 public void onSuccess(List<DeliveryDTO> deliveries) {
-                    runOnUiThread(() -> adapter.updateDeliveries(deliveries));
+                    runOnUiThread(() -> {
+                        if(!deliveries.isEmpty()){
+                            textDefault.setVisibility(View.GONE);
+                            adapter.updateDeliveries(deliveries);
+                        }else{
+                            textDefault.setVisibility(View.VISIBLE);
+                        }
+                    });
+
                 }
                 @Override
                 public void onError(String errorMessage) {

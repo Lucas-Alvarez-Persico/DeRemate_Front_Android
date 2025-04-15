@@ -1,113 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
     android:background="#FFFFFF">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:gravity="center"
-        android:paddingTop="50dp" />
-
+    <!-- Header con flecha y título en la misma fila -->
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp">
+
+        <ImageButton
+            android:id="@+id/arrow_left_solid"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/arrow_left_solid"
+            app:tint="@color/violeta1" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Detalle de la Orden"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <!-- Contenedor de detalles -->
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/tv_delivery_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="#444"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/recuadro" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_order_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="#444"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/recuadro" />
+            <TextView
+                android:id="@+id/tv_delivery_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#444"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/recuadro" />
 
-    <TextView
-        android:id="@+id/tv_delivery_state"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="#444"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/recuadro" />
+            <TextView
+                android:id="@+id/tv_order_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#444"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/recuadro" />
 
-    <TextView
-        android:id="@+id/tv_order_client"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="#444"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/recuadro" />
+            <TextView
+                android:id="@+id/tv_delivery_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#444"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/recuadro" />
 
-    <TextView
-        android:id="@+id/tv_package_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ubicación del paquete:"
-        android:textSize="18sp"
-        android:textColor="#444"
-        android:layout_marginBottom="15dp"
-        android:visibility="gone"
-        android:background="@drawable/recuadro" />
+            <TextView
+                android:id="@+id/tv_order_client"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#444"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/recuadro" />
 
-    <TextView
-        android:id="@+id/tv_start_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="#444"
-        android:layout_marginBottom="15dp"
-        android:visibility="gone"
-        android:background="@drawable/recuadro" />
+            <TextView
+                android:id="@+id/tv_package_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ubicación del paquete:"
+                android:textSize="18sp"
+                android:textColor="#444"
+                android:layout_marginBottom="15dp"
+                android:visibility="gone"
+                android:background="@drawable/recuadro" />
 
-    <TextView
-        android:id="@+id/tv_end_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="#444"
-        android:layout_marginBottom="15dp"
-        android:visibility="gone"
-        android:background="@drawable/recuadro" />
+            <TextView
+                android:id="@+id/tv_start_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#444"
+                android:layout_marginBottom="15dp"
+                android:visibility="gone"
+                android:background="@drawable/recuadro" />
 
-    <TextView
-        android:id="@+id/tv_time_difference"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="#444"
-        android:layout_marginBottom="15dp"
-        android:visibility="gone"
-        android:background="@drawable/recuadro" />
+            <TextView
+                android:id="@+id/tv_end_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#444"
+                android:layout_marginBottom="15dp"
+                android:visibility="gone"
+                android:background="@drawable/recuadro" />
 
-    <Button
-        android:id="@+id/btn_volver"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Volver"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/violeta1" />
-
+            <TextView
+                android:id="@+id/tv_time_difference"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#444"
+                android:layout_marginBottom="15dp"
+                android:visibility="gone"
+                android:background="@drawable/recuadro" />
         </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

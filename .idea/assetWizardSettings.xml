@@ -16,26 +16,12 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
-                        <option name="children">
-                          <map>
-                            <entry key="clipartAsset">
-                              <value>
-                                <PersistentState>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialiconsoutlined/account_box/outline_account_box_24.xml" />
-                                    </map>
-                                  </option>
-                                </PersistentState>
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="profile" />
-                            <entry key="sourceFile" value="C:\Users\Leiva\Downloads\hacer (1).svg" />
+                            <entry key="outputName" value="arrow2" />
+                            <entry key="sourceFile" value="C:\Users\Lucas\Downloads\arrow2.svg" />
                           </map>
                         </option>
                       </PersistentState>
