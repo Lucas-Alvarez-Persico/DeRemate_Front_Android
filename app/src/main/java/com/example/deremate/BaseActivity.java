@@ -65,6 +65,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         if (this instanceof MainActivity) {
             nav.setSelectedItemId(R.id.nav_inventory);
+
         }
         else if (this instanceof InProgressActivity) {
              nav.setSelectedItemId(R.id.nav_in_progress);
@@ -76,6 +77,5 @@ public abstract class BaseActivity extends AppCompatActivity {
              nav.setSelectedItemId(R.id.nav_profile);
          }
     }
-
 
 }

@@ -3,11 +3,18 @@ package com.example.deremate.data.model;
 public class User {
 
     private String username;
+    private String name;
     private String password;
     private String role;
 
     public User(String username, String password) {
         this.username = username;
+        this.password = password;
+    }
+
+    public User(String username, String name, String password) {
+        this.username = username;
+        this.name = name;
         this.password = password;
     }
     public String getUsername() {

@@ -36,6 +36,18 @@ public class InProgressActivity extends BaseActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        String token = tokenRepository.getToken();
+        if (token != null) {
+            loadInProgressDelivery(token);
+        }
+        else {
+            Toast.makeText(this, "Token no disponible", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -49,60 +61,63 @@ public class InProgressActivity extends BaseActivity {
         layoutForm = findViewById(R.id.layout_form);
         textDefault = findViewById(R.id.text_default);
 
-        // Cargar datos
         String token = tokenRepository.getToken();
         if (token != null) {
-            deliveryRepository.getCurrentDeliveriesByStatus("EN_CAMINO", new RepositoryCallback<List<DeliveryDTO>>() {
-                @Override
-                public void onSuccess(List<DeliveryDTO> deliveries) {
-                    runOnUiThread(() -> {
-                        if (!deliveries.isEmpty()) {
-                            textDefault.setVisibility(View.GONE);
-                            layoutForm.setVisibility(View.VISIBLE);
-                            DeliveryDTO delivery = deliveries.get(0);
-
-                            String startTime = delivery.getStartTime();
-
-                            // Mostrar datos
-                            tvId.setText("#" + delivery.getOrder().getId());
-                            tvClient.setText(delivery.getOrder().getClient());
-                            tvAddress.setText(delivery.getOrder().getAddress());
-                            tvStatus.setText("EN CAMINO");
-                            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                            SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
-
-
-                            if (startTime != null) {
-                                try {
-                                    String cleanedStart = startTime.replace("T", " ");
-                                    if (cleanedStart.contains(".")) {
-                                        cleanedStart = cleanedStart.substring(0, cleanedStart.indexOf("."));
-                                    }
-
-                                    Date date = inputFormat.parse(cleanedStart);
-                                    String formatted = outputFormat.format(date);
-                                    tvStartTime.setText(formatted);
-                                } catch (Exception e) {
-                                    tvStartTime.setText(startTime);
-                                }
-                                tvStartTime.setVisibility(View.VISIBLE);
-                            }
-
-                        } else {
-                            layoutForm.setVisibility(View.GONE);
-                            textDefault.setVisibility(View.VISIBLE);
-                        }
-                    });
-                }
-
-                @Override
-                public void onError(String errorMessage) {
-                    runOnUiThread(() -> Toast.makeText(InProgressActivity.this, "Error: " + errorMessage, Toast.LENGTH_SHORT).show());
-                }
-            }, token);
-        } else {
+            loadInProgressDelivery(token);
+        }
+        else {
             Toast.makeText(this, "Token no disponible", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    private void loadInProgressDelivery(String token) {
+        deliveryRepository.getCurrentDeliveriesByStatus("EN_CAMINO", new RepositoryCallback<List<DeliveryDTO>>() {
+            @Override
+            public void onSuccess(List<DeliveryDTO> deliveries) {
+                runOnUiThread(() -> {
+                    if (!deliveries.isEmpty()) {
+                        textDefault.setVisibility(View.GONE);
+                        layoutForm.setVisibility(View.VISIBLE);
+                        DeliveryDTO delivery = deliveries.get(0);
+
+                        String startTime = delivery.getStartTime();
+
+                        // Mostrar datos
+                        tvId.setText("#" + delivery.getOrder().getId());
+                        tvClient.setText(delivery.getOrder().getClient());
+                        tvAddress.setText(delivery.getOrder().getAddress());
+                        tvStatus.setText("EN CAMINO");
+
+                        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
+
+                        if (startTime != null) {
+                            try {
+                                String cleanedStart = startTime.replace("T", " ");
+                                if (cleanedStart.contains(".")) {
+                                    cleanedStart = cleanedStart.substring(0, cleanedStart.indexOf("."));
+                                }
+
+                                Date date = inputFormat.parse(cleanedStart);
+                                String formatted = outputFormat.format(date);
+                                tvStartTime.setText(formatted);
+                            } catch (Exception e) {
+                                tvStartTime.setText(startTime);
+                            }
+                            tvStartTime.setVisibility(View.VISIBLE);
+                        }
+
+                    } else {
+                        layoutForm.setVisibility(View.GONE);
+                        textDefault.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                runOnUiThread(() -> Toast.makeText(InProgressActivity.this, "Error: " + errorMessage, Toast.LENGTH_SHORT).show());
+            }
+        }, token);
     }
 }

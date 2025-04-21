@@ -2,6 +2,7 @@ package com.example.deremate.data.network;
 
 import com.example.deremate.data.model.Order;
 import com.example.deremate.data.model.User;
+import com.example.deremate.data.model.UserDTO;
 import com.example.deremate.data.model.UserAuth;
 import com.example.deremate.data.model.VerifyCode;
 import com.example.deremate.data.model.DeliveryDTO;
@@ -48,4 +49,7 @@ public interface ApiService {
 
     @PUT("delivery/completed/{deliveryId}")
     Call<String> completeDelivery(@Header("Authorization") String token, @Path("deliveryId") Long deliveryId);
+
+    @GET("user/profile")
+    Call<UserDTO> getProfile(@Header("Authorization") String token);
 }

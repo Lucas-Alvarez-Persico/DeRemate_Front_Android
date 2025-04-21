@@ -20,7 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 @Singleton
-public class OrderRepositoryImpl implements OrderRepository{
+public class OrderRepositoryImpl implements OrderRepository {
 
     private final ApiService apiService;
     @Inject

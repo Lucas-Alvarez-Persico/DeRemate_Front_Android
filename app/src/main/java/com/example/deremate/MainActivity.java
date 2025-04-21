@@ -8,7 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,7 +16,6 @@ import com.example.deremate.data.model.DeliveryDTO;
 import com.example.deremate.data.repository.TokenRepository;
 import com.example.deremate.data.repository.delivery.DeliveryRepository;
 import com.example.deremate.utils.RepositoryCallback;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -40,10 +38,12 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (tokenRepository.getToken() == null) {
-            Log.d("MainActivity", "No token found, redirecting to login.");
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
+            if (tokenRepository.getToken() == null) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        else {
+            getDeliveries(tokenRepository.getToken());
         }
     }
 
@@ -69,6 +69,31 @@ public class MainActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         textDefault = findViewById(R.id.text_default);
 
+        String token = tokenRepository.getToken();
+        if (token != null) {
+            getDeliveries(token);
+        }
+    }
+
+    private void getDeliveries(String token){
+        deliveryRepository.getCurrentDeliveriesByStatus("pendiente", new RepositoryCallback<List<DeliveryDTO>>() {
+            @Override
+            public void onSuccess(List<DeliveryDTO> deliveries) {
+                runOnUiThread(() -> {
+                    if(!deliveries.isEmpty()){
+                        textDefault.setVisibility(View.GONE);
+                        deliveryAdapter.updateDeliveries(deliveries);
+                    }else{
+                        textDefault.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Toast.makeText(MainActivity.this, "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        }, token);
 
         deliveryAdapter = new DeliveryAdapter(List.of(), delivery -> {
             Intent intent = new Intent(MainActivity.this, DeliveryDetailActivity.class);
@@ -81,30 +106,7 @@ public class MainActivity extends BaseActivity {
             startActivity(intent);
         });
         recyclerView.setAdapter(deliveryAdapter);
-
-        String token = tokenRepository.getToken();
-        if (token != null) {
-            deliveryRepository.getCurrentDeliveriesByStatus("pendiente", new RepositoryCallback<List<DeliveryDTO>>() {
-                @Override
-                public void onSuccess(List<DeliveryDTO> deliveries) {
-                    runOnUiThread(() -> {
-                        if(!deliveries.isEmpty()){
-                            textDefault.setVisibility(View.GONE);
-                            deliveryAdapter.updateDeliveries(deliveries);
-                        }else{
-                            textDefault.setVisibility(View.VISIBLE);
-                        }
-                    });
-
-                }
-
-                @Override
-                public void onError(String errorMessage) {
-                    Toast.makeText(MainActivity.this, "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
-                }
-            }, token);
-        }
-
     }
+
 }
 

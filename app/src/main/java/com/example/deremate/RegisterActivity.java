@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
             String role = "ADMIN";
 
             if (!nombre.isEmpty() && !email.isEmpty() && !contrasena.isEmpty()) {
-                User newUser = new User (email, contrasena);
+                User newUser = new User (email, nombre, contrasena);
                 newUser.setRole(role);
                 registerUser(newUser);
                 //Toast.makeText(RegisterActivity.this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
